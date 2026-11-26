@@ -4,7 +4,7 @@
   "description": "Steam API skill and hosted SteamWebAPI MCP connection for inventories, profiles, market prices and CS2 items.",
   "author": { "name": "SteamWebAPI", "url": "https://www.steamwebapi.com" },
   "homepage": "https://www.steamwebapi.com/steam-skill",
-  "keywords": ["steam", "steam-api", "cs2", "inventory", "market-prices", "mcp"],
+  "keywords": ["steam", "steam-api", "steamwebapi", "cs2", "inventory", "market-prices", "mcp"],
   "commands": {
     "steamwebapi": {
       "content": "Read and follow the Steam API skill at `${CLAUDE_PLUGIN_ROOT}/skills/steam-api/SKILL.md` for the current request. $ARGUMENTS",
