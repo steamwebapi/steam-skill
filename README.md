@@ -1,61 +1,63 @@
-# SteamWebAPI for Claude
+# Steam Skill for AI Agents
 
-An integration skill and the official remote SteamWebAPI MCP connection, bundled
-as a Claude plugin. Discover endpoints, understand item and price data, and build
-inventory, marketplace and CS2 release-discovery integrations.
+Use SteamWebAPI in Codex, Claude Code, Cursor and other agents that support
+Agent Skills. Find endpoints and read live schemas for Steam inventories,
+profiles, prices, item catalogs and CS2 skin images.
 
-## Install
+SteamWebAPI is an independent service with its own endpoints, API keys and
+plans. SteamWebAPI is not affiliated with Valve.
 
-In Claude clients that support custom plugin uploads, open Plugins, choose the
-upload option and select `steamwebapi-claude.zip`.
+[Steam Skill overview and examples](https://www.steamwebapi.com/steam-skill)
 
-For Claude Code, extract the ZIP into a directory named `steamwebapi`, then run:
+## Install the skill
 
 ```sh
-claude --plugin-dir /absolute/path/to/steamwebapi
+npx skills add steamwebapi/steam-skill --skill steam-api
 ```
 
-Ask Claude to use the SteamWebAPI skill, or invoke `/steamwebapi:steamwebapi`.
-Try: "Use SteamWebAPI to build a CS2 inventory valuation endpoint. Check the live
-endpoint schema and explain how missing prices should be handled."
+The installer asks which agents to set up. Run `npx skills update` to get newer
+versions. To install by hand, save [SKILL.md](skills/steam-api/SKILL.md) as
+`steam-api/SKILL.md` in your agent's skills directory.
 
-## API access
+If you installed the standalone skill under its old `steamwebapi` name, install
+`steam-api`, then run `npx skills remove steamwebapi` using the same project or
+global scope as your old installation.
 
-Endpoint discovery and documentation work without an API key. The bundled MCP
-connection contains no credentials. Authenticated API requests require your own
-SteamWebAPI key and the appropriate endpoint access.
+Try asking:
 
-For authenticated MCP reads in Claude Code, configure a user-scoped connection
-to the same server using Claude's MCP settings and an `X-Api-Key` header. A
-user-scoped connection to the same endpoint takes precedence over the plugin
-connection. Store the key in private client configuration or an environment
-variable; do not add it to this distributable plugin or put it in chat.
+> Use the Steam API skill to build a CS2 inventory valuation endpoint. Check the
+> live schema and explain how missing prices should be handled.
 
-For other Claude clients, use their supported connector authentication settings.
-If the client cannot configure the header, use the plugin for documentation and
-keep authenticated application calls in your own backend.
+## Install the Claude Code plugin
 
-## Data and capabilities
-
-The MCP executor permits only its supported read-only routes. Installing the
-plugin does not grant account access or permission to trade. Live endpoint
-documentation is authoritative; the bundled skill is a versioned guide, not a
-promise that every described feature has reached the deployed API.
-
-## Publishing
-
-The extracted directory is self-contained and can be placed in a separate public
-plugin repository. It contains no SteamWebAPI backend source. Validate it with
-`claude plugin validate /absolute/path/to/steamwebapi` before submitting it to
-the Claude plugin directory. Creating this package does not submit or publish it.
-
-Documentation: https://www.steamwebapi.com/mcp
-
-## Install from GitHub in Claude Code
+The Claude Code plugin bundles the same skill and the hosted MCP connection.
 
 ```text
-/plugin marketplace add steamwebapi/steamwebapi-claude-plugin
+/plugin marketplace add steamwebapi/steam-skill
 /plugin install steamwebapi@steamwebapi
 ```
 
-The repository is the plugin package and its small marketplace catalog.
+Run `/steamwebapi:steam-api` to open the skill. The previous
+`/steamwebapi:steamwebapi` command opens the same instructions. Existing plugin
+users can refresh the marketplace and update `steamwebapi@steamwebapi`.
+
+Claude clients that support custom plugin uploads can use
+`steamwebapi-claude.zip`. To load the extracted plugin locally in Claude Code,
+run `claude --plugin-dir /absolute/path/to/steamwebapi`.
+
+## Connect MCP
+
+The skill can use the [public OpenAPI specification](https://www.steamwebapi.com/api/doc.json)
+directly. To enable endpoint discovery inside your agent, configure the hosted
+Streamable HTTP MCP server.
+
+```text
+https://mcp.steamwebapi.com/mcp
+```
+
+Endpoint documentation and discovery are public. Eligible live read-only
+requests require your SteamWebAPI key and sufficient access and quota. Configure
+the key in private client settings with the `X-Api-Key` header, or keep it in
+server-side configuration for your own application.
+
+[Client setup and examples](https://www.steamwebapi.com/mcp) · [SteamWebAPI documentation](https://www.steamwebapi.com/api/steam/documentation)
