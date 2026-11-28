@@ -55,9 +55,8 @@ Streamable HTTP MCP server.
 https://mcp.steamwebapi.com/mcp
 ```
 
-Endpoint documentation and discovery are public. Eligible live read-only
-requests require your SteamWebAPI key and sufficient access and quota. Configure
-the key in private client settings with the `X-Api-Key` header, or keep it in
-server-side configuration for your own application.
+Endpoint documentation and discovery are public. For eligible live read-only
+requests, use your client's private credential settings for the SteamWebAPI
+connection. The skill uses connections you have already configured.
 
 [Client setup and examples](https://www.steamwebapi.com/mcp) · [SteamWebAPI documentation](https://www.steamwebapi.com/api/steam/documentation)
