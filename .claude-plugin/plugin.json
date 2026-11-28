@@ -1,6 +1,6 @@
 {
   "name": "steamwebapi",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "description": "Steam API skill and hosted SteamWebAPI MCP connection for inventories, profiles, market prices and CS2 items.",
   "author": { "name": "SteamWebAPI", "url": "https://www.steamwebapi.com" },
   "homepage": "https://www.steamwebapi.com/steam-skill",
